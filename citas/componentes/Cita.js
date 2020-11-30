@@ -1,7 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, TouchableHighlight } from 'react-native';
 
 const Cita = ({item}) => {
+
+     const dialogoEliminar = () => {
+          console.log('Eliminando...');
+     }
+     
      return ( 
           <View style={styles.cita}>
                <View>
@@ -15,6 +20,12 @@ const Cita = ({item}) => {
                <View>
                     <Text style={styles.label}>Síntomas: </Text>
                     <Text style={styles.texto}>{item.sintomas}</Text>
+               </View>
+
+               <View>
+                    <TouchableHighlight onPress={ () => dialogoEliminar() } style={styles.btnEliminar}>
+                         <Text style={styles.textoEliminar}> Eliminar &times; </Text>
+                    </TouchableHighlight>
                </View>
           </View>
                
@@ -37,6 +48,16 @@ const styles = StyleSheet.create({
      },
      texto: {
           fontSize: 18
+     },
+     btnEliminar: {
+          padding: 10,
+          backgroundColor: 'red',
+          marginVertical: 10
+     },
+     textoEliminar: {
+          color: '#FFF',
+          fontWeight: 'bold',
+          textAlign: 'center'
      }
 })
  
