@@ -18,7 +18,7 @@ const Formulario = () => {
           setDatePickerVisibility(false);
      };
 
-     const confirmarFecha = (date) => {
+     const confirmarFecha = fecha => {
           const opciones = { year: 'numeric', month: 'long', day: '2-digit'};
           guardarFecha(date.toLocaleDateString('es-ES', opciones));
           hideDatePicker();
@@ -32,8 +32,9 @@ const Formulario = () => {
           setTimePickerVisibility(false);
      };
 
-     const confirmarHora = (date) => {
-          console.warn("A date has been picked: ", date);
+     const confirmarHora = hora => {
+          const opciones = { hour: 'numeric', minute: '2-digit', hour12: false };
+          guardarHora(hora.toLocaleString('en-US', opciones));
           hideTimePicker();
      };
 
