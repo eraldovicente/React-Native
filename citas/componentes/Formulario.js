@@ -5,19 +5,34 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 const Formulario = () => {     
 
      const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
      const showDatePicker = () => {
-     setDatePickerVisibility(true);
+          setDatePickerVisibility(true);
      };
 
      const hideDatePicker = () => {
-     setDatePickerVisibility(false);
+          setDatePickerVisibility(false);
      };
 
-     const handleConfirm = (date) => {
-     console.warn("A date has been picked: ", date);
-     hideDatePicker();
+     const confirmarFecha = (date) => {
+          console.warn("A date has been picked: ", date);
+          hideDatePicker();
      };
+
+     const showTimePicker = () => {
+          setTimePickerVisibility(true);
+     };
+
+     const hideTimePicker = () => {
+          setTimePickerVisibility(false);
+     };
+
+     const confirmarHora = (date) => {
+          console.warn("A date has been picked: ", date);
+          hideTimePicker();
+     };
+
      return ( 
           <>
                <View style={styles.formulario}>
@@ -47,12 +62,22 @@ const Formulario = () => {
                     </View>    
 
                     <View>
-                         <Button title="Show Date Picker" onPress={showDatePicker} />
+                         <Button title="Seleccionar fecha" onPress={showDatePicker} />
                          <DateTimePickerModal
                          isVisible={isDatePickerVisible}
                          mode="date"
-                         onConfirm={handleConfirm}
+                         onConfirm={confirmarFecha}
                          onCancel={hideDatePicker}
+                         />
+                    </View> 
+
+                    <View>
+                         <Button title="Selecsionar Hora" onPress={showTimePicker} />
+                         <DateTimePickerModal
+                         isVisible={isTimePickerVisible}
+                         mode="time"
+                         onConfirm={confirmarHora}
+                         onCancel={hideTimePicker}
                          />
                     </View>                    
 
