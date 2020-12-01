@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, StyleSheet, View, TextInput, Button } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, ScrollView } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Formulario = () => {   
@@ -39,7 +39,7 @@ const Formulario = () => {
 
      return ( 
           <>
-               <View style={styles.formulario}>
+               <ScrollView style={styles.formulario}>
                     <View>
                          <Text style={styles.label}>Paciente:</Text>
                          <TextInput
@@ -100,7 +100,7 @@ const Formulario = () => {
                               onChangeText={ (texto) => console.log(texto) }
                          />
                     </View>             
-               </View>
+               </ScrollView>
                     
           </>
       );
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
      formulario: {
           backgroundColor: '#FFF',
           paddingHorizontal: 20,
-          paddingVertical: 10,
+          paddingVertical: 5,
           marginHorizontal: '2.5%'
      },
      label: {
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
           marginTop: 20
      },
      input: {
-          marginTop: 10,
+          marginTop: 5,
+          marginBottom: 10,
           height: 50,
           borderColor: '#e1e1e1',
           borderWidth: 1,
