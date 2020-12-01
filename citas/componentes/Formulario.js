@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import { Text, StyleSheet, View, TextInput, Button } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const Formulario = () => {     
+const Formulario = () => {   
+
+     const [fecha, guardarFecha] = useState('');
+     const [hora, guardarHora] = useState('');
 
      const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
      const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -16,7 +19,8 @@ const Formulario = () => {
      };
 
      const confirmarFecha = (date) => {
-          console.warn("A date has been picked: ", date);
+          const opciones = { year: 'numeric', month: 'long', day: '2-digit'};
+          guardarFecha(date.toLocaleDateString('es-ES', opciones));
           hideDatePicker();
      };
 
@@ -62,6 +66,7 @@ const Formulario = () => {
                     </View>    
 
                     <View>
+                         <Text style={styles.label}>Fecha:</Text>
                          <Button title="Seleccionar fecha" onPress={showDatePicker} />
                          <DateTimePickerModal
                          isVisible={isDatePickerVisible}
@@ -69,10 +74,12 @@ const Formulario = () => {
                          onConfirm={confirmarFecha}
                          onCancel={hideDatePicker}
                          locale='es_ES'
-                         />
+                         />                         
+                         <Text>{fecha}</Text>
                     </View> 
 
                     <View>
+                         <Text style={styles.label}>Hora</Text>
                          <Button title="Selecsionar Hora" onPress={showTimePicker} />
                          <DateTimePickerModal
                          isVisible={isTimePickerVisible}
@@ -82,6 +89,7 @@ const Formulario = () => {
                          locale='es_ES'
                          is24Hour
                          />
+                         <Text>{hora}</Text>
                     </View>                    
 
                     <View>
