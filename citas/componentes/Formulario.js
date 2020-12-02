@@ -151,8 +151,7 @@ const styles = StyleSheet.create({
      formulario: {
           backgroundColor: '#FFF',
           paddingHorizontal: 20,
-          paddingVertical: 5,
-          marginHorizontal: '2.5%'
+          paddingVertical: 5,          
      },
      label: {
           fontWeight: 'bold',
@@ -161,7 +160,6 @@ const styles = StyleSheet.create({
      },
      input: {
           marginTop: 5,
-          marginBottom: 10,
           height: 50,
           borderColor: '#e1e1e1',
           borderWidth: 1,
@@ -170,7 +168,7 @@ const styles = StyleSheet.create({
      btnSubmit: {
           padding: 10,
           backgroundColor: '#7d024e',
-          marginVertical: 10
+          marginVertical: 40
      },
      textoSubmit: {
           color: '#FFF',
