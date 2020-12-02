@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { Text, StyleSheet, View, TextInput, Button, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import shortid, { generate } from 'shortid';
 
-const Formulario = () => {   
+const Formulario = ({citas, setCitas, guardarMostrarForm}) => {   
 
      const [paciente, guardarPaciente] = useState('');
      const [propietario, guardarPropietario] = useState('');
@@ -24,7 +25,7 @@ const Formulario = () => {
 
      const confirmarFecha = fecha => {
           const opciones = { year: 'numeric', month: 'long', day: '2-digit'};
-          guardarFecha(date.toLocaleDateString('es-ES', opciones));
+          guardarFecha(fecha.toLocaleDateString('es-ES', opciones));
           hideDatePicker();
      };
 
@@ -44,19 +45,35 @@ const Formulario = () => {
 
      // Crear nueva cita
      const crearNuevaCita = () => {
-          // Validar 
+     // Validar 
           if (paciente.trim() === '' ||
-              propietario.trim() === '' || 
-              telefono.trim() === '' || 
-              fecha.trim() === '' || 
-              hora.trim() === '' || 
-              sintomas.trim() === '') 
-              {
-                   // Falla la validación
+               propietario.trim() === '' || 
+               telefono.trim() === '' || 
+               fecha.trim() === '' || 
+               hora.trim() === '' || 
+               sintomas.trim() === '') 
+               {
+                    // Falla la validación
                     mostrarAlerta();
 
                     return;
-              }
+               }
+
+          // Crear una nueva cita
+          const cita = { paciente, propietario, telefono, fecha, hora, sintomas };
+
+          cita.id = shortid.generate();
+
+          // console.log(cita);
+
+          // Agregar al state
+          const citasNuevo = [ ...citas, cita ];
+          setCitas(citasNuevo);
+
+          // Ocultar el formulario
+          guardarMostrarForm(false);
+          
+          // Resetear el formulario
      }
 
      // Muestra la alerta si falla la validación
