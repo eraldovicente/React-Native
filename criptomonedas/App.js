@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from './components/Header';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,7 +13,7 @@ import {
 const App = () => {
   return (
     <>
-
+      <Header />
     </>
   );
 };
