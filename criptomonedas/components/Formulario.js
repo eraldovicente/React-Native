@@ -18,8 +18,13 @@ const Formulario = () => {
           consultarAPI();
      }, []);
 
+     // Almacena las selecciones del usuario
      const obtenerMoneda = moneda => {
           guardarMoneda(moneda);
+     }
+
+     const obtenerCriptomoneda = cripto => {
+          guardarCriptomoneda(cripto);
      }
 
      return ( 
@@ -29,6 +34,7 @@ const Formulario = () => {
                <Picker
                     selectedValue={moneda}
                     onValueChange={ moneda => obtenerMoneda(moneda) }
+                    itemStyle={{ height: 120 }}
                >
                     <Picker.Item label="- Seleccione -" value=""/>
                     <Picker.Item label="Dolar de Estados Unidos" value="USD"/>
@@ -36,7 +42,20 @@ const Formulario = () => {
                     <Picker.Item label="Euro" value="EUR"/>
                     <Picker.Item label="Libra Esterlina" value="GBP"/>
                </Picker>
+
                <Text style={styles.label}>Criptomoneda</Text>
+               <Picker
+                    selectedValue={criptomoneda}
+                    onValueChange={ cripto => obtenerCriptomoneda(cripto) }
+                    itemStyle={{ height: 120 }}
+               >
+                    <Picker.Item label="- Seleccione -" value=""/>
+                    { criptomonedas.map( cripto => (
+                         <Picker.Item key={cripto.CoinInfo.Id} label={cripto.CoinInfo.FullName} value={cripto.CoinInfo.Name}/>
+
+                    )) }
+               </Picker>
+
           </View>
       );
 }
