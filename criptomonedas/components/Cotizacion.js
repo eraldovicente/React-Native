@@ -11,7 +11,7 @@ const Cotizacion = ({resultado}) => {
                     <Text style={styles.span}>{resultado.PRICE} </Text>
                </Text>
                <Text style={styles.texto}>Precio más alto del día: {' '}
-                    <Text style={styles.span}> {resultado.HIGHDAY} </Text>
+                    <Text style={styles.span}>  {resultado.HIGHDAY} </Text>
                </Text>
                <Text style={styles.texto}>Precio más bajo del día: {' '}
                     <Text style={styles.span}> {resultado.LOWDAY} </Text>
@@ -29,8 +29,7 @@ const Cotizacion = ({resultado}) => {
 const styles = StyleSheet.create({
      resultado: {
           backgroundColor: '#5E49E2',
-          padding: 20,
-          marginTop: 20
+          padding: 20
      },
      texto: {
           color: '#FFF',
