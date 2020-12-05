@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     btnCotizar: {
         backgroundColor: '#5E49E2',
         padding: 10,
-        marginVertical: 10,
+        marginVertical: 20,
         
     },
     textoCotizar: {

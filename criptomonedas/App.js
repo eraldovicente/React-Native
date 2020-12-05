@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, ScrollView } from 'react-native';
+import axios from 'axios';
+
 import Header from './components/Header';
 import Formulario from './components/Formulario';
-import axios from 'axios';
+import Cotizacion from './components/Cotizacion';
 
 
 const App = () => {
@@ -10,6 +12,7 @@ const App = () => {
   const [ moneda, guardarMoneda ] = useState('');
   const [ criptomoneda, guardarCriptomoneda ] = useState('');
   const [ consultarAPI, guardarConsultarAPI ] = useState(false);
+  const [ resultado, guardarResultado ] = useState({});
 
   useEffect(() => {
     const cotizarCriptomoneda = async () => {
@@ -17,7 +20,7 @@ const App = () => {
         // consultar la api para obtener la cotizacion
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
         const resultado = await axios.get(url);
-        console.log(resultado.data.DISPLAY);
+        guardarResultado(resultado.data.DISPLAY[criptomoneda][moneda]);
 
         guardarConsultarAPI(false);
       }
@@ -26,7 +29,7 @@ const App = () => {
   }, [consultarAPI]);
 
   return (
-      <>
+      <ScrollView>
         <Header />
 
         <View style={styles.contenido }>
@@ -44,8 +47,12 @@ const App = () => {
             guardarConsultarAPI={guardarConsultarAPI}
           />
 
+          <Cotizacion
+            resultado={resultado}
+          />
+
         </View>
-      </>
+      </ScrollView>
   );
 };
 
