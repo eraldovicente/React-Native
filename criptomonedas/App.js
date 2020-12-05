@@ -1,25 +1,25 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, ScrollView } from 'react-native';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 
 
 const App = () => {
   return (
-    <>
-      <Header />
+      <ScrollView>
+        <Header />
 
-      <View style={styles.contenido }>
+        <View style={styles.contenido }>
 
-        <Image
-          style={styles.imagen}
-          source={ require('./assets/img/cryptomonedas.png') }
-        />
+          <Image
+            style={styles.imagen}
+            source={ require('./assets/img/cryptomonedas.png') }
+          />
 
-        <Formulario />
+          <Formulario />
 
-      </View>
-    </>
+        </View>
+      </ScrollView>
   );
 };
 
