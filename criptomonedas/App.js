@@ -45,13 +45,12 @@ const App = () => {
             guardarMoneda={guardarMoneda}
             guardarCriptomoneda={guardarCriptomoneda}
             guardarConsultarAPI={guardarConsultarAPI}
-          />
-
-          <Cotizacion
-            resultado={resultado}
-          />
+          />       
 
         </View>
+        <Cotizacion
+          resultado={resultado}
+        />
       </ScrollView>
   );
 };
