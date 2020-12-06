@@ -1,8 +1,19 @@
-import React from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 const Formulario = () => {
+
+     const [ animacionboton ] = useState(new Animated.Value(1));
+
+     const animacionEntrada = () => {
+          console.log('entrada...');
+     }
+
+     const animacionSalida = () => {
+          console.log('Salida...');
+     }
+
      return (  
           <>
                <View style={styles.formulario}>
@@ -28,7 +39,10 @@ const Formulario = () => {
                           </Picker>
                     </View>
 
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                         onPressIn={ () => animacionEntrada() }
+                         onPressOut={ () => animacionSalida() }
+                    >
                          <View
                               style={styles.btnBuscar}
                          >
