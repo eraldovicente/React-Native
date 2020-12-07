@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableWithoutFeedback, Animated, Alert } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
-const Formulario = ({ busqueda, guardarBusqueda }) => {
+const Formulario = ({ busqueda, guardarBusqueda, guardarConsultar }) => {
 
      const {pais, ciudad} = busqueda;
 
@@ -13,6 +13,9 @@ const Formulario = ({ busqueda, guardarBusqueda }) => {
                mostrarAlerta();
                return;
           }
+
+          // Consultar la api
+          guardarConsultar(true);
      }
 
      const mostrarAlerta = () => {
@@ -60,6 +63,7 @@ const Formulario = ({ busqueda, guardarBusqueda }) => {
                               onValueChange={ pais => guardarBusqueda({ ...busqueda, pais}) }
                          >
                               <Picker.Item label="-- Seleccione un país --" value="" />
+                              <Picker.Item label="Brasil" value="BR" />
                               <Picker.Item label="Estados Unidos" value="US" />
                               <Picker.Item label="México" value="MX" />
                               <Picker.Item label="Argentina" value="AR" />
