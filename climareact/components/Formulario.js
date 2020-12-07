@@ -7,11 +7,17 @@ const Formulario = () => {
      const [ animacionboton ] = useState(new Animated.Value(1));
 
      const animacionEntrada = () => {
-          console.log('entrada...');
+          Animated.spring( animacionboton, {
+               toValue: .75
+          }).start();
      }
 
      const animacionSalida = () => {
           console.log('Salida...');
+     }
+
+     const estiloAnimacion = {
+          transform: [{ scale: animacionboton }]
      }
 
      return (  
@@ -43,11 +49,11 @@ const Formulario = () => {
                          onPressIn={ () => animacionEntrada() }
                          onPressOut={ () => animacionSalida() }
                     >
-                         <View
-                              style={styles.btnBuscar}
+                         <Animated.View
+                              style={[styles.btnBuscar, estiloAnimacion]}
                          >
                               <Text style={styles.textoBuscar}>Buscar Clima</Text>
-                         </View>
+                         </Animated.View>
                     </TouchableWithoutFeedback>
                </View>
           </>
