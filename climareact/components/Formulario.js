@@ -13,7 +13,11 @@ const Formulario = () => {
      }
 
      const animacionSalida = () => {
-          console.log('Salida...');
+          Animated.spring( animacionboton, {
+               toValue: 1,
+               friction: 1,
+               tension: 30
+          }).start();
      }
 
      const estiloAnimacion = {
