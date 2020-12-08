@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text, Keyboard, TouchableWithoutFeedback, Alert  } from 'react-native';
 import Formulario from './components/Formulario';
+import Clima from './components/Clima';
 
 const App = () => {
 
@@ -25,7 +26,7 @@ const App = () => {
           const resultado = await respuesta.json();
           guardarResultado(resultado);
           guardarConsultar(false);
-          
+
         } catch (error) {
           mostrarAlerta();
         } 
@@ -51,6 +52,9 @@ const App = () => {
       <TouchableWithoutFeedback onPress={ () => ocultarTeclado() }>
         <View style={styles.app}>
           <View style={styles.contenido}>
+            <Clima
+              resultado={resultado}
+            />
             <Formulario 
               busqueda={busqueda}
               guardarBusqueda={guardarBusqueda}

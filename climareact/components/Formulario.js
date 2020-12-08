@@ -36,7 +36,7 @@ const Formulario = ({ busqueda, guardarBusqueda, guardarConsultar }) => {
           Animated.spring( animacionboton, {
                toValue: 1,
                friction: 1,
-               tension: 30
+               tension: 20
           }).start();
      }
 
