@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Animated } from "react-native";
+import { StyleSheet, Text, Animated, View } from "react-native";
 
-const Animacion1 = () => {
+const Animacion3 = () => {
 
-     const [ animacion ] = useState( new Animated.Value(0) );
+     const [ animacion ] = useState( new Animated.Value(14) );
 
      useEffect(() => {
           Animated.timing(
                animacion, {
-                    toValue: 1, // al valor al que llega
+                    toValue: 40, // al valor al que llega
                     duration: 500, // cantidad de tiempo en llegar
                     useNativeDriver: false
                }
@@ -16,13 +16,11 @@ const Animacion1 = () => {
      }, []);
 
      return ( 
-         <Animated.View
-               style={{
-                    opacity: animacion
-               }}      
-         >
-              <Text style={styles.texto}>Animacion 1</Text>               
-         </Animated.View>
+         <View>
+              <Animated.Text
+                    style={[styles.texto, { fontSize: animacion }]}
+               >Animacion 1</Animated.Text>               
+         </View>
      );
 }
 
@@ -33,4 +31,4 @@ const styles = StyleSheet.create({
      }
 });
 
-export default Animacion1;
+export default Animacion3;
