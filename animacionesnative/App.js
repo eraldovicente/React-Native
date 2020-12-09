@@ -3,13 +3,14 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import Animacion1 from './components/Animacion1';
+// import Animacion1 from './components/Animacion1';
+import Animacion2 from './components/Animacion2';
 
 const App = () => {
   return (
     <>
       <View style={styles.contenido}>
-        <Animacion1 /> 
+        <Animacion2 /> 
       </View>      
     </>
   );
