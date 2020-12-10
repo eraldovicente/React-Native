@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableHighlight, TouchableNativeFeedback, Keyboard, Platform } from 'react-native';
 import Cita from './componentes/Cita';
 import Formulario from './componentes/Formulario';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App = () => {
 
   const [mostrarform, guardarMostrarForm] = useState(false);
+
+  useEffect(() => {
+    const obtenerCitasStorage = async () => {
+      try {
+        const citasStorage = await AsyncStorage.getItem('citas');
+        if(citasStorage) {
+          setCitas(JSON.parse(citasStorage));
+        }
+      } catch (error) {  
+        console.log(error);
+      }
+    }
+    obtenerCitasStorage();
+  }, []);
 
   //definir el state de citas
   const [citas, setCitas] = useState([
@@ -31,6 +46,15 @@ const App = () => {
     Keyboard.dismiss();
   }
 
+  // Almacenar las citas en storage
+  const guardarCitasStorage = async (citasJSON) => {
+    try {
+      await AsyncStorage.setItem('citas', citasJSON);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <TouchableNativeFeedback onPress={() => cerrarTeclado() }>
 
@@ -51,6 +75,7 @@ const App = () => {
                 citas={citas}
                 setCitas={setCitas}
                 guardarMostrarForm={guardarMostrarForm}
+                guardarCitasStorage={guardarCitasStorage}
               />
             </>
           ) : (
