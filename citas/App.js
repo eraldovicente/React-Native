@@ -24,9 +24,9 @@ const App = () => {
 
   //definir el state de citas
   const [citas, setCitas] = useState([
-    { id: "1", paciente: "Hook", propietario: "Eraldo", sintomas: "No dorme"},
-    { id: "2", paciente: "Redux", propietario: "Eraldo", sintomas: "No come"},
-    { id: "3", paciente: "Native", propietario: "Eraldo", sintomas: "No bebe"},
+  //   { id: "1", paciente: "Hook", propietario: "Eraldo", sintomas: "No dorme"},
+  //   { id: "2", paciente: "Redux", propietario: "Eraldo", sintomas: "No come"},
+  //   { id: "3", paciente: "Native", propietario: "Eraldo", sintomas: "No bebe"},
   ]);
 
   // Elimina los pacientes del state
