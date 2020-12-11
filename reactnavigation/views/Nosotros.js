@@ -1,10 +1,32 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet, View, Button } from 'react-native';
 
-const Nosotros = () => {
+const Nosotros = ({navigation}) => {
+
+     const volver = () => {
+          navigation.navigate('Inicio');
+          // navigation.goBack();
+          // navigation.push('Inicio');
+     }
+
      return ( 
-          <Text>Nosotros</Text>
+          <View style={styles.contenedor}>
+               <Text>Nosotros</Text>
+               <Button
+                    title='Volver'
+                    onPress={ () => volver() }
+               />
+          </View>
       );
 }
+
+const styles = StyleSheet.create({
+     contenedor: {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center'
+     }
+});
  
 export default Nosotros;
