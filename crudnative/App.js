@@ -12,6 +12,7 @@ import {
 import Inicio from './views/Inicio';
 import NuevoCliente from './views/NuevoCliente';
 import DetallesCliente from './views/DetallesCliente';
+import BarraSuperior from './components/ui/Barra';
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
@@ -45,12 +46,19 @@ const App = () => {
             headerTitleStyle: {
               fontWeight: 'bold'
             },
-            headerTitleAlign: 'center'
+            // headerTitleAlign: 'center'
           }}
         >
           <Stack.Screen
             name="Inicio"
             component={Inicio}
+            options={ ({navigation, route}) => ({
+              headerTitleAlign: 'center',
+              headerLeft: () => <BarraSuperior 
+                                  navigation={navigation}
+                                  route={route}
+                                />
+            })}
           />
           <Stack.Screen
             name="NuevoCliente"
