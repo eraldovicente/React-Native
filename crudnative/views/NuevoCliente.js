@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Headline, Button } from 'react-native-paper';
 import globalStyles from '../styles/global';
 
 const NuevoCliente = () => {
 
-     const leerNombre = () => {
-          console.log('Escribiendo');
-     }
+     // campos formulario
+     const [ nombre, guardarNombre ] = useState('');
+     const [ telefono, guardarTelefono ] = useState('');
+     const [ correo, guardarCorreo ] = useState('');
+     const [ empresa, guardarEmpresa ] = useState('');
 
      return ( 
           <View style={globalStyles.contenedor}>
@@ -16,25 +18,29 @@ const NuevoCliente = () => {
                <TextInput
                     label="Nombre"
                     placeholder="Eraldo"
-                    onChangeText={ () => leerNombre() }
+                    onChangeText={ texto => guardarNombre(texto) }
+                    value={nombre}
                     style={styles.input}
                />
                <TextInput
                     label="Teléfono"
                     placeholder="6969696969"
-                    onChangeText={ () => leerNombre() }
+                    onChangeText={ texto => guardarTelefono(texto) }
+                    value={telefono}
                     style={styles.input}
                />
                <TextInput
                     label="Correo"
                     placeholder="correo@correo.com"
-                    onChangeText={ () => leerNombre() }
+                    onChangeText={ texto => guardarCorreo(texto) }
+                    value={correo}
                     style={styles.input}
                />
                <TextInput
                     label="Empresa"
                     placeholder="Nombre Empresa"
-                    onChangeText={ () => leerNombre() }
+                    onChangeText={ texto => guardarEmpresa(texto) }
+                    value={empresa}
                     style={styles.input}
                />               
           </View>
