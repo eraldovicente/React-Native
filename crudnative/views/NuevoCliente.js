@@ -11,6 +11,23 @@ const NuevoCliente = () => {
      const [ correo, guardarCorreo ] = useState('');
      const [ empresa, guardarEmpresa ] = useState('');
 
+     // almacena el cliente en la BD
+     const guardarCliente = () => {
+          // validar
+          if (nombre === '' || telefono === '' || correo === '' || empresa === '') {
+               console.log('Hay campos vacios');
+               return;
+          }
+          console.log('guardando');
+          // generar el cliente
+
+          // guardar el cliente en la API
+
+          // redireccionar 
+
+          // limpiar el form (opcional)
+     }
+
      return ( 
           <View style={globalStyles.contenedor}>
                <Headline style={globalStyles.titulo}>Añadir Nuevo Cliente</Headline>
@@ -42,7 +59,16 @@ const NuevoCliente = () => {
                     onChangeText={ texto => guardarEmpresa(texto) }
                     value={empresa}
                     style={styles.input}
-               />               
+               />        
+
+               <Button 
+                    icon="pencil-circle" 
+                    mode="contained" 
+                    onPress={() => guardarCliente() }     
+               >
+                    Guardar Cliente
+               </Button>   
+
           </View>
      );
 }
