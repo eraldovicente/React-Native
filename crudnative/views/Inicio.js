@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { FlatList, View } from 'react-native';
+import { List } from 'react-native-paper';
 import axios from 'axios';
 
 const Inicio = () => {
@@ -12,6 +13,7 @@ const Inicio = () => {
                try {
                     const resultado = await axios.get('http://10.0.0.242:3000/clientes');
                     guardarClientes(resultado.data);
+                    console.log(resultado.data);
                } catch (error) {
                     console.log(error);
                }
@@ -21,7 +23,20 @@ const Inicio = () => {
      }, [])
 
      return ( 
-          <Text>Desde Inicio</Text>
+          <View>
+
+               <FlatList
+                    data={clientes}
+                    keyExtractor={ cliente => (cliente.id).toString() }
+                    renderItem={ ({item}) => (
+                         <List.Item
+                              title={item.nombre}
+                              description={item.empresa}
+                         />
+                    )}
+                    
+               />
+          </View>
       );
 }
  
