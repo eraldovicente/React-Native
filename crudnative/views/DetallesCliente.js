@@ -2,10 +2,12 @@ import React from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { Text, Headline, Subheading, Button } from 'react-native-paper';
 import globalStyles from '../styles/global';
+import axios from 'axios';
 
-const DetallesCliente = ({route}) => {
+const DetallesCliente = ({navigation, route}) => {
 
-     const { nombre, telefono, correo, empresa } = route.params.item;
+     const { guardarConsultarAPI } = route.params;
+     const { nombre, telefono, correo, empresa, id } = route.params.item;
 
      const mostrarConfirmacion = () => {
           Alert.alert(
@@ -18,8 +20,22 @@ const DetallesCliente = ({route}) => {
           )
      }
 
-     const eliminarContacto = () => {
-          console.log('eliminando...');
+     const eliminarContacto = async () => {
+
+          const url = `http://10.0.0.242:3000/clientes/${id}`;
+          // console.log(url);
+
+          try {
+              await axios.delete(url); 
+          } catch (error) {
+               console.log(error);
+          }
+
+          // Redireccionar
+          navigation.navigate('Inicio');
+
+          // Volver a consultar la api
+          guardarConsultarAPI(true);
      }
 
      return ( 

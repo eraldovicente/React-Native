@@ -1,81 +1,11 @@
 {
   "clientes": [
     {
-      "nombre": "Etd",
-      "telefono": "244",
-      "empresa": "Fg",
-      "correo": "D@fg",
-      "id": 1
-    },
-    {
-      "nombre": "Etd2",
-      "telefono": "244",
-      "empresa": "Fg",
-      "correo": "D@fg",
-      "id": 2
-    },
-    {
       "nombre": "Gghh",
       "telefono": "Fyg",
       "empresa": "H fui",
       "correo": "Jhk",
       "id": 3
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 4
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 5
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 6
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 7
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 8
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 9
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 10
-    },
-    {
-      "nombre": "Tfh",
-      "telefono": "Gh",
-      "empresa": "Ghh",
-      "correo": "Ghh",
-      "id": 11
     }
   ]
 }
