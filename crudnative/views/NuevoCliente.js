@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import { TextInput, Headline, Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import globalStyles from '../styles/global';
+import axios from 'axios';
 
 const NuevoCliente = () => {
 
@@ -13,7 +14,7 @@ const NuevoCliente = () => {
      const [ alerta, guardarAlerta ] = useState(false);
 
      // almacena el cliente en la BD
-     const guardarCliente = () => {
+     const guardarCliente =  async () => {
           // validar
           if (nombre === '' || telefono === '' || correo === '' || empresa === '') {
                guardarAlerta(true)
@@ -23,8 +24,19 @@ const NuevoCliente = () => {
           // generar el cliente
           const cliente = { nombre, telefono, empresa, correo };
           console.log(cliente);
-          // guardar el cliente en la API
 
+          // guardar el cliente en la API
+          try {
+               if (Platform.OS === 'ios') {
+                    // para ios
+                    await axios.post('http://localhost:3000/clientes', cliente);
+               } else {
+                    // para android
+                    await axios.post('http://10.0.0.242:3000/clientes', cliente);
+               }
+          } catch (error) {
+               console.log(error);
+          }
           // redireccionar 
 
           // limpiar el form (opcional)
@@ -81,7 +93,7 @@ const NuevoCliente = () => {
                                <Paragraph>Todos los campos son obligatorios</Paragraph>
                          </Dialog.Content>
                          <Dialog.Actions>
-                              <Button onPress={ () => guardarCliente(false) }>OK</Button>
+                              <Button onPress={ () => guardarAlerta(false) }>OK</Button>
                          </Dialog.Actions>
                     </Dialog>
                </Portal>
