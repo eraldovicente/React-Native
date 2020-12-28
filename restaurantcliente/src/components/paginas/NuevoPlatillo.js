@@ -48,8 +48,17 @@ const NuevoPlatillo = () => {
                                         placeholder="Nombre Platillo"
                                         value={formik.values.nombre}
                                         onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
                                    />
                               </div>
+
+                              { formik.touched.nombre && formik.errors.nombre ? (
+                                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                        <p className="font-bold">Hubo un error:</p>
+                                        <p>{formik.errors.nombre}</p>
+                                   </div>
+                              ) : null }
+
 
                               <div className="mb-4">
                                    <label className="block text-grey-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
@@ -60,8 +69,17 @@ const NuevoPlatillo = () => {
                                         min="0"
                                         value={formik.values.precio}
                                         onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
                                    />
                               </div>
+
+                              { formik.touched.precio && formik.errors.precio ? (
+                                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                        <p className="font-bold">Hubo un error:</p>
+                                        <p>{formik.errors.precio}</p>
+                                   </div>
+                              ) : null }
+
 
                               <div className="mb-4">
                                    <label className="block text-grey-700 text-sm font-bold mb-2" htmlFor="categoria">Categoria</label>
@@ -71,6 +89,7 @@ const NuevoPlatillo = () => {
                                         name="categoria"
                                         value={formik.values.categoria}
                                         onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
                                    >
                                         <option value="">-- Seleccione --</option>
                                         <option value="desayuno">Desayuno</option>
@@ -81,6 +100,13 @@ const NuevoPlatillo = () => {
                                         <option value="ensalada">ensalada</option>
                                    </select>
                               </div>
+
+                              { formik.touched.categoria && formik.errors.categoria ? (
+                                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                        <p className="font-bold">Hubo un error:</p>
+                                        <p>{formik.errors.categoria}</p>
+                                   </div>
+                              ) : null }
 
                               <div className="mb-4">
                                    <label className="block text-grey-700 text-sm font-bold mb-2" htmlFor="imagen">Imagen</label>
@@ -99,8 +125,16 @@ const NuevoPlatillo = () => {
                                         placeholder="Descripción del Platillo"
                                         value={formik.values.descripcion}
                                         onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
                                    ></textarea>
                               </div>
+
+                              { formik.touched.descripcion && formik.errors.descripcion ? (
+                                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                        <p className="font-bold">Hubo un error:</p>
+                                        <p>{formik.errors.descripcion}</p>
+                                   </div>
+                              ) : null }
 
                               <input
                                    type="submit"
