@@ -4,8 +4,12 @@ import { FirebaseContext } from '../../firebase';
 
 const Menu = () => {
 
+     // Definir el state para los platillos
+     const [ platillos, guardarPlatillos ] = useState([]);
+
      const { firebase } = useContext(FirebaseContext);
 
+     // consultar la base de datos al cargar
      useEffect(() => {
           const obtenerPlatillos = () => {
                // const resultado = await firebase.db.collection('productos').get();
@@ -13,14 +17,22 @@ const Menu = () => {
                // resultado.forEach(platillo => {
                //      console.log(platillo.data());
                // });
-               const resultado = await firebase.db.collection('productos').onSnapshot(manejarSnapshot);
+               firebase.db.collection('productos').onSnapshot(manejarSnapshot);
           }
           obtenerPlatillos();
      }, []);
 
      // Snapshot nos permite utilizar la base de datos en tiempo real de firestore
      function manejarSnapshot(snapshot) {
-          
+          const platillos = snapshot.docs.map(doc => {
+               return {
+                    id: doc.id,
+                    ...doc.data()
+               }
+          });
+
+          // Almacenar los resultados en el state
+          guardarPlatillos(platillos);
      }
 
      return ( 
