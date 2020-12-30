@@ -22,7 +22,7 @@ const Menu = () => {
                firebase.db.collection('productos').onSnapshot(manejarSnapshot);
           }
           obtenerPlatillos();
-     }, []);
+     }, [firebase.db]);
 
      // Snapshot nos permite utilizar la base de datos en tiempo real de firestore
      function manejarSnapshot(snapshot) {
