@@ -31,7 +31,8 @@ const App = () => {
                 headerTitleStyle: {
                   fontWeight: 'bold'
                 },
-                headerTitleAlign: 'center'
+                headerTitleAlign: 'center',
+                headerTintColor: '#000'
               }}
             >
               <Stack.Screen
