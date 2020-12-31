@@ -4,7 +4,7 @@ import firebase from '../../firebase';
 import FirebaseReducer from './firebaseReducer'
 import FirebaseContext from './firebaseContext';
 
-import { OBTENER_PRODUCTOS } from '../../types';
+import { OBTENER_PRODUCTOS_EXITO } from '../../types';
 
 const FirebaseState = props => {
 
@@ -20,9 +20,28 @@ const FirebaseState = props => {
 
      // Función que se ejecuta para traer los productos
      const obtenerProductos = () => {
-          dispatch({
-               type: OBTENER_PRODUCTOS
-          })
+          
+          // consultar firebase
+          firebase.db
+               .collection('productos')
+               .where('existencia', '==', true)  // traer solo los que esten en existencia
+               .onSnapshot(manejarSnapshot);
+          
+          function manejarSnapshot(snapshot) {
+               let platillos = snapshot.docs.map(doc => {
+                    return {
+                         id: doc.id,
+                         ...doc.data()
+                    }
+               });
+               // console.log(platillos);
+
+               // Tenemos resultados de la base de datos
+               dispatch({
+                    type: OBTENER_PRODUCTOS_EXITO,
+                    payload: platillos
+               });
+          }
      }
 
      return (
