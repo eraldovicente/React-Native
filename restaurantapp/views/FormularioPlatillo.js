@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import {
      Container,
@@ -20,6 +20,22 @@ const FormularioPlatillo = () => {
 
      // State para cantidades
      const [ cantidad, guardarCantidad ] = useState(1);
+     const [ total, guardarTotal ] = useState(0);
+
+     // context
+     const { platillo } = useContext(PedidoContext);
+     const { precio } = platillo;
+
+     // En cuanto el componente carga, calcular la cantidad a pagar
+     useEffect(() => {
+          calcularTotal();
+     }, [cantidad]);
+
+     // Calcular el total del platillo por su cantidad
+     const calcularTotal = () => {
+          const totalPagar = precio * cantidad;
+          guardarTotal(totalPagar);
+     }
 
      // Decrementa en uno
      const decrementarUno = () => {
@@ -72,6 +88,8 @@ const FormularioPlatillo = () => {
                                    </Button>
                               </Col>
                          </Grid>
+
+                         <Text style={globalStyles.cantidad}>Subtotal: R$ {total}</Text>
                     </Form>
                </Content>
           </Container>
