@@ -22,18 +22,31 @@ const FormularioPlatillo = () => {
                <Content>
                     <Form>
                          <Text style={globalStyles.titulo}>Cantidad</Text>
-                         <Grid>
+                         <Grid
+                              style={{ alignItems: 'center'}}
+                         >
                               <Col>
-                                   <Button>
-                                        <Icon name="remove" />
+                                   <Button
+                                        props
+                                        dark
+                                        style={{ height: 80, width: '100%', justifyContent: 'center' }}
+                                   >
+                                        <Icon style={{ fontSize: 40 }} name="remove" />
                                    </Button>
                               </Col>
                               <Col>
-                              
+                                   <Input
+                                        style={{ textAlign: 'center', fontSize: 20 }}
+                                        value="1"
+                                   />
                               </Col>
                               <Col>
-                                   <Button>
-                                        <Icon name="add" />
+                                   <Button
+                                        props
+                                        dark
+                                        style={{ height: 80, width: '100%', justifyContent: 'center' }}
+                                   >
+                                        <Icon style={{ fontSize: 40 }} name="add" />
                                    </Button>
                               </Col>
                          </Grid>
