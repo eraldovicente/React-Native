@@ -35,13 +35,13 @@ const Menu = () => {
                               <Text> {categoria} </Text>
                          </Separator>
                     )
-               } else {
-                    return (
-                         <Separator>
-                              <Text> {categoria} </Text>
-                         </Separator>
-                    )
-               }
+               } 
+          } else {
+               return (
+                    <Separator>
+                         <Text> {categoria} </Text>
+                    </Separator>
+               )
           }
      }
 
