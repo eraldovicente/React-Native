@@ -79,7 +79,7 @@ const NuevoPlatillo = () => {
                     .child(nombre)
                     .getDownloadURL();
           
-          console.log(url);
+          // console.log(url);
           guardarUrlimagen(url);
      }
 
