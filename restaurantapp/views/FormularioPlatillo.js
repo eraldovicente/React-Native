@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 import {
      Container,
      Content,
      Form,
+     Footer,
+     FooterTab,
      Icon,
      Input,
      Grid,
@@ -51,6 +53,28 @@ const FormularioPlatillo = () => {
           guardarCantidad(nuevaCantidad); 
      }
 
+     // Confirma si la la orden es correcta
+     const confirmarOrden = () => {
+          Alert.alert(
+               'Deseas confirmar tu pedido?',
+               'Un pedido confirmado ya no se podrá modificar',
+               [
+                    {
+                         text: 'Confirmar',
+                         onPress: () => {
+                              // Almacenar el pedido al pedido principal
+
+                              // Navegar hacia el resumen
+                         }
+                    },
+                    {
+                         text: 'Cancelar',
+                         style: 'cancel'
+                    }
+               ]
+          )
+     }
+
      return ( 
           <Container>
                <Content>
@@ -92,6 +116,17 @@ const FormularioPlatillo = () => {
                          <Text style={globalStyles.cantidad}>Subtotal: R$ {total}</Text>
                     </Form>
                </Content>
+               
+               <Footer>
+                    <FooterTab>
+                         <Button
+                              style={globalStyles.boton}
+                              onPress={ () => confirmarOrden() }
+                         >
+                              <Text style={globalStyles.botonTexto}>Agregar al Pedido</Text>
+                         </Button>
+                    </FooterTab>
+               </Footer>
           </Container>
       );
 }
