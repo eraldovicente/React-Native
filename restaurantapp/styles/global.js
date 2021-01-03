@@ -15,6 +15,16 @@ const globalStyles = StyleSheet.create({
           textTransform: 'uppercase',
           fontWeight: 'bold',
           color: '#000'
+     },
+     titulo: {
+          textAlign: 'center',
+          marginTop: 40,
+          marginBottom: 20,
+          fontSize: 22
+     },
+     imagen: {
+          height: 300,
+          width: '100%'
      }
 });
 
