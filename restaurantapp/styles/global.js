@@ -25,6 +25,12 @@ const globalStyles = StyleSheet.create({
      imagen: {
           height: 300,
           width: '100%'
+     },
+     cantidad: {
+          marginVertical: 20,
+          textAlign: 'center',
+          fontSize: 20,
+          fontWeight: 'bold'
      }
 });
 
