@@ -16,6 +16,7 @@ import {
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
+import firebase from '../firebase';
 
 import PedidoContext from '../context/pedidos/pedidosContext';
 
@@ -46,7 +47,27 @@ const ResumenPedido = () => {
                [
                     {
                          text: 'Confirmar',
-                         onPress: () => {
+                         onPress: async () => {
+
+                              // crear un objeto
+                              const pedidoObj = {
+                                   tiempoentrega: 0,
+                                   completado: false,
+                                   total: Number(total),
+                                   orden: pedido, // array
+                                   creando: Date.now()
+                              }
+
+                              console.log(pedidoObj);
+                              
+                              try {
+                                   const pedido = await firebase.db.collection('ordenes').add(pedidoObj);
+                                   console.log(pedido);
+                              } catch (error) {
+                                   console.log(error);
+                              }
+                              // escribir el pedido en firebase
+
                               navigation.navigate('ProgresoPedido')
                          }
                     },
