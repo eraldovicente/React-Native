@@ -21,6 +21,8 @@ import PedidoContext from '../context/pedidos/pedidosContext';
 
 const ResumenPedido = () => {
 
+     const navigation = useNavigation();
+
      // context de pedido
      const { pedido, total, mostrarResumen } =  useContext(PedidoContext);
      console.log(pedido);
@@ -60,7 +62,28 @@ const ResumenPedido = () => {
                     })}
 
                     <Text style={globalStyles.cantidad}>Total a pagar: R$ {total}</Text>
+
+                    <Button                         
+                         onPress={ () => navigation.navigate('Menu') }
+                         style={{marginVertical: 40}}   
+                         full    
+                         dark                  
+                    >
+                         <Text style={[globalStyles.botonTexto, {color: '#FFF'}]}>Seguir Pediendo</Text>
+                    </Button>
                </Content>
+
+               <Footer>
+                    <FooterTab>
+                         <Button                         
+                              onPress={ () => navigation.navigate('ProgresoPedido') }
+                              style={[globalStyles.boton]}               
+                         >
+                              <Text style={globalStyles.botonTexto}>Ordenar Pedido</Text>
+                         </Button>
+                    </FooterTab>
+               </Footer>
+
           </Container>
       );
 }
