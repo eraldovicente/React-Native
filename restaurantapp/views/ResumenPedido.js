@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import {
      Container,
      Content,
@@ -24,7 +24,7 @@ const ResumenPedido = () => {
      const navigation = useNavigation();
 
      // context de pedido
-     const { pedido, total, mostrarResumen } =  useContext(PedidoContext);
+     const { pedido, total, mostrarResumen, eliminarProducto } =  useContext(PedidoContext);
      console.log(pedido);
 
      useEffect(() => {          
@@ -55,6 +55,24 @@ const ResumenPedido = () => {
           )
      }
 
+     // Elimina un producto del arreglo de pedido
+     const confirmarEliminacion = id => {
+          Alert.alert(
+               'Deseas eliminar este artículo?',
+               'Una vez eliminado no se puede recuperar',
+               [
+                    {
+                         text: 'Confirmar',
+                         onPress: () => {
+                              // Eliminar del state
+                              eliminarProducto(id);
+                         }
+                    },
+                    { text: 'Cancelar', style: 'cancel'}
+               ]
+          )
+     }
+
      return ( 
           <Container style={globalStyles.contenedor}>
                <Content style={globalStyles.contenido}>
@@ -72,6 +90,15 @@ const ResumenPedido = () => {
                                              <Text>{nombre}</Text>
                                              <Text>Cantidad: {cantidad}</Text>
                                              <Text>Precio: R$ {precio}</Text>
+
+                                             <Button
+                                                  onPress={ () => confirmarEliminacion(id) }
+                                                  full
+                                                  danger
+                                                  style={{marginTop: 10}}
+                                             >
+                                                  <Text style={globalStyles.botonTexto, { color: '#FFF'}}>Eliminar</Text>
+                                             </Button>
                                         </Body>
                                    </ListItem>
                               </List>
