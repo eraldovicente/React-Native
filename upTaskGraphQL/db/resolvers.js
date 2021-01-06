@@ -30,6 +30,29 @@ const resolvers = {
               } catch (error) {
                    console.log(error);
               }
+          },
+          autenticarUsuario: async (_, {input}) => {
+               const { email, password} = input;
+
+               // Si el usuario existe
+               const existeUsuario = await Usuario.findOne({ email });
+
+               // si el usuario existe
+               if (!existeUsuario) {
+                    throw new Error('El usuario no existe')
+               }
+
+               // Si el password es correcto
+               const passwordCorrecto = await bcryptjs.compare(password, existeUsuario.password);
+
+               if (!passwordCorrecto) {
+                    throw new Error('Password Incorrecto');
+               }
+
+               // Dar acceso a la app
+
+               return "Has iniciado sesión"
+
           }
      }
 }
