@@ -6,7 +6,7 @@ require('dotenv').config({path: 'variables'});
 
 // Crea y firma un JWT
 const crearToken = (usuario, secreta, expiresIn) => {
-     console.log(usuario);
+     // console.log(usuario);
      const { id, email } = usuario;
 
      return jwt.sign( { id, email }, secreta, { expiresIn } );
@@ -14,7 +14,11 @@ const crearToken = (usuario, secreta, expiresIn) => {
 
 const resolvers = {
      Query: {
-          
+          obtenerProyectos: async (_, {}, ctx) => {
+              const proyectos = await Proyecto.find({ creador: ctx.usuario.id }) ;
+
+              return proyectos;
+          }
      },
      Mutation: {
           crearUsuario: async (_, {input}) => {
@@ -62,7 +66,7 @@ const resolvers = {
 
                // Dar acceso a la app
                return {
-                    token: crearToken(existeUsuario, process.env.SECRETA, '2hr')
+                    token: crearToken(existeUsuario, process.env.SECRETA, '24hr')
                }
 
           },
@@ -95,7 +99,7 @@ const resolvers = {
                     throw new Error('No tienes las credenciales para editar!');
                }
                // Guardar el proyecto
-               proyecto = await Proyecto.findOneAndUpdate({ _id: id}, input, { new: true });
+               proyecto = await Proyecto.findOneAndUpdate({ _id: id}, input, { new: true, useFindAndModify: false });
                return proyecto;
           }
      }
