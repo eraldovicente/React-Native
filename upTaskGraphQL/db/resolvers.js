@@ -19,6 +19,11 @@ const resolvers = {
               const proyectos = await Proyecto.find({ creador: ctx.usuario.id }) ;
 
               return proyectos;
+          },
+          obtenerTareas: async (_, {input}, ctx) => {
+               const tareas = await Tarea.find({ creador: ctx.usuario.id }).where('proyecto').equals(input.proyecto);
+
+               return tareas;
           }
      },
      Mutation: {
