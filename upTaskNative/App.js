@@ -25,7 +25,15 @@ const App = () => {
             name="CrearCuenta"
             component={CrearCuenta}
             options={{
-              title: "Crear Cuenta"
+              title: "Crear Cuenta",
+              headerStyle: {
+                backgroundColor: '#28303B'
+              },
+              headerTintColor: '#FFF',
+              headerTitleStyle: {
+                fontWeight: 'bold'
+              },
+              headerTitleAlign: 'center'
             }}
           />
         </Stack.Navigator>

@@ -1,9 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Container, Text, Button, H1, Input, Form, Item } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 const Login = () => {
+
+     // React navigation
+     const navigation = useNavigation();
+
      return ( 
           <Container style={ [globalStyles.contenedor, { backgroundColor: '#e84347' }] }>
                <View style={globalStyles.contenido}>
@@ -34,7 +39,10 @@ const Login = () => {
                          >Iniciar Sesión</Text>
                     </Button>
 
-                    <Text style={globalStyles.enlace}>Crear Cuenta</Text>
+                    <Text 
+                         onPress={ () => navigation.navigate('CrearCuenta') }
+                         style={globalStyles.enlace}
+                    >Crear Cuenta</Text>
                </View>
           </Container>
       );
