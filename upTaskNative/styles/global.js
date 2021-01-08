@@ -15,7 +15,7 @@ const globalStyles = StyleSheet.create({
           marginBottom: 20,
           fontSize: 32,
           fontWeight: 'bold',
-          color: '#FFF'
+          color: '#FFF' 
      },
      input: {
           backgroundColor: '#FFF',
