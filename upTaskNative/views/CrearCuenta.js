@@ -54,9 +54,11 @@ const CrearCuenta = () => {
                     }
                });
 
-               console.log(data);
+               guardarMensaje(data.crearUsuario);
+               navigation.navigate('Login');
+
           } catch (error) {
-               console.log(error);     
+               guardarMensaje(error.message.replace('GraphQL error: ', ''));     
           }
      }
 
