@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Container, Text, Button, H1, Input, Form, Item } from 'native-base';
+import { Container, Text, Button, H1, Input, Form, Item, Toast } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../styles/global';
+
+// Apollo
+import { gql, useMutation } from '@apollo/client';
+
+const AUTENTICAR_USUARIO = gql`
+     mutation autenticarUsuario($input: AutenticarInput) {
+          autenticarUsuario(input: $input) {
+               token
+          }
+     }
+`;
 
 const Login = () => {     
      // State del formulario
@@ -14,8 +25,11 @@ const Login = () => {
      // React navigation
      const navigation = useNavigation();
 
+     // Mutation de apollo
+     const [ autenticarUsuario ] = useMutation(AUTENTICAR_USUARIO);
+
      // Cuando el usuario presiona en iniciar sesion
-     const handleSubmit = () => {
+     const handleSubmit = async () => {
           // validar
           if ( email === '' || password === '') {
                // Mostrar un error
@@ -25,9 +39,21 @@ const Login = () => {
 
           try {
                // autenticar el usuario
+               const { data } = await autenticarUsuario({
+                    variables: {
+                         input: {
+                              email,
+                              password
+                         }
+                    }
+               });
+
+               const { token } = data.autenticarUsuario;
+               console.log(token);
           } catch (error) {
                // si hay un error mostrarlo
-          }
+               guardarMensaje(error.message.replace('GraphQL error: ', ''));
+          } 
      }
 
      // muestra um mensaje toast
