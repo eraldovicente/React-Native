@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import {Root} from 'native-base';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,33 +12,35 @@ import CrearCuenta from './views/CrearCuenta';
 const App = () => {
   return (
     <>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{
-              title: "Iniciar Sesión",
-              headerShown: false
-            }}
-          />
-          <Stack.Screen
-            name="CrearCuenta"
-            component={CrearCuenta}
-            options={{
-              title: "Crear Cuenta",
-              headerStyle: {
-                backgroundColor: '#28303B'
-              },
-              headerTintColor: '#FFF',
-              headerTitleStyle: {
-                fontWeight: 'bold'
-              },
-              headerTitleAlign: 'center'
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Root>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                title: "Iniciar Sesión",
+                headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name="CrearCuenta"
+              component={CrearCuenta}
+              options={{
+                title: "Crear Cuenta",
+                headerStyle: {
+                  backgroundColor: '#28303B'
+                },
+                headerTintColor: '#FFF',
+                headerTitleStyle: {
+                  fontWeight: 'bold'
+                },
+                headerTitleAlign: 'center'
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Root>
     </>
   );
 };
