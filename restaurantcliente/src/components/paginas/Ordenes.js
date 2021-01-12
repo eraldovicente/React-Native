@@ -15,7 +15,7 @@ const Ordenes = () => {
                firebase.db.collection('ordenes').where('completado', '==', false).onSnapshot(manejarSnapshot);
           }
           obtenerOrdenes();
-     }, []);
+     }, [firebase.db]);
 
      function manejarSnapshot(snapshot) {
           const ordenes = snapshot.docs.map(doc => {
