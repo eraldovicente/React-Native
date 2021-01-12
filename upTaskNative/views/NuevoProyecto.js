@@ -14,6 +14,16 @@ const NUEVO_PROYECTO = gql`
      }
 `;
 
+//Actualizar el cache
+const OBTENER_PROYECTOS = gql`
+     query obtenerProyectos {
+          obtenerProyectos {
+               id
+               nombre
+          }
+     }
+`;
+
 const NuevoProyecto = () => {
 
      // navigation
@@ -24,7 +34,15 @@ const NuevoProyecto = () => {
      const [mensaje, guardarMensaje] = useState(null);
 
      // Apollo
-     const [nuevoProyecto] = useMutation(NUEVO_PROYECTO)
+     const [nuevoProyecto] = useMutation(NUEVO_PROYECTO, {
+          update(cache, { data: { nuevoProyecto }}) {
+               const { obtenerProyectos } = cache.readQuery({ query: OBTENER_PROYECTOS });
+               cache.writeQuery({
+                    query: OBTENER_PROYECTOS,
+                    data: { obtenerProyectos: obtenerProyectos.concat([nuevoProyecto]) }
+               })
+          }
+     });
 
      // Validar crear proyecto
      const handleSubmit = async () => {

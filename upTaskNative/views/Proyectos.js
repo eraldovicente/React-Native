@@ -21,6 +21,8 @@ const Proyectos = () => {
      // Apollo
      const { data, loading, error} = useQuery(OBTENER_PROYECTOS);
 
+     // console.log(data.obtenerProyectos);
+
      return ( 
           <Container style={[ globalStyles.contenedor, {backgroundColor: '#E84347'}]}>
                <Button
