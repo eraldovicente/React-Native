@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { Container, Button, Text, H2, Content, List, Form, Item, Input, Toast } from 'native-base';
 import globalStyles from '../styles/global';
+import { gql, useMutation } from '@apollo/client';
+
+// Crear nuevas tareas
+const NUEVA_TAREA = gql`
+     mutation nuevaTarea($input: TareaInput) {
+          nuevaTarea(input: $input) {
+               nombre
+               id 
+               proyecto
+               estado
+          }
+     }
+`;
 
 const Proyecto = ({route}) => {
 
@@ -8,15 +21,36 @@ const Proyecto = ({route}) => {
      const [ nombre, guardarNombre ] = useState('');
      const [ mensaje, guardarMensaje ] = useState(null);
 
+     // Apollo
+     const [ nuevaTarea ] = useMutation(NUEVA_TAREA);
+
      // Validar y crear tareas
-     const handleSubmit = () => {
+     const handleSubmit = async () => {
           if(nombre === '') {
                guardarMensaje('El nombre de la tarea es obligatorio');
                return;
           }
 
-
           // Almacenarlo en la base de datos
+          try {
+               const { data } = await nuevaTarea({
+                    variables: {
+                         input: {
+                              nombre,
+                              proyecto: route.params.id
+                         }
+                    }
+               });
+               console.log(data);
+               guardarNombre('');
+               guardarMensaje('Tarea creada Correctamente');
+
+               setTimeout(() => {
+                    guardarMensaje(null);
+               }, 3000);
+          } catch (error) {
+               console.log(error);
+          }
      }
 
      const mostrarAlerta = () => {

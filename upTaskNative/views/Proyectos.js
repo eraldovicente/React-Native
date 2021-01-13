@@ -37,7 +37,7 @@ const Proyectos = () => {
 
                <Content>
                     <List style={styles.contenido}>
-                         {data.obtenerProyectos.map(proyecto => (
+                         {data.obtenerProyectos.map(proyecto => ( 
                               <ListItem  
                                    key={proyecto.id}
                                    onPress={ () => navigation.navigate("Proyecto", proyecto) }
