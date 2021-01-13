@@ -22,6 +22,11 @@ const Proyectos = () => {
      const { data, loading, error} = useQuery(OBTENER_PROYECTOS);
 
      // console.log(data.obtenerProyectos);
+     console.log(data);
+     console.log(loading);
+     console.log(error);
+ 
+     if(loading) return <Text>Cargando...</Text>
 
      return ( 
           <Container style={[ globalStyles.contenedor, {backgroundColor: '#E84347'}]}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button, Text, H2, Content, List, Form, Item, Input, Toast } from 'native-base';
 import globalStyles from '../styles/global';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 
 // Crear nuevas tareas
 const NUEVA_TAREA = gql`
@@ -15,13 +15,38 @@ const NUEVA_TAREA = gql`
      }
 `;
 
+// Consulta las tareas del proyecto
+const OBTENER_TAREAS = gql`
+     query obtenerTareas($input: ProyectoIDInput) {
+          obtenerTareas(input: $input) {
+               id
+               nombre
+               estado
+          }
+     }
+`;
+
 const Proyecto = ({route}) => {
+
+     // obtiene el ID del proyecto
+     const { id } = route.params;
 
      // state del componente
      const [ nombre, guardarNombre ] = useState('');
      const [ mensaje, guardarMensaje ] = useState(null);
 
-     // Apollo
+     // Apollo obtener tareas
+     const { data, loading, error } = useQuery(OBTENER_TAREAS, {
+          variables: {
+               input: {
+                    proyecto: id
+               }
+          }
+     })
+
+     console.log(data);
+
+     // Apollo crear tareas
      const [ nuevaTarea ] = useMutation(NUEVA_TAREA);
 
      // Validar y crear tareas
@@ -37,7 +62,7 @@ const Proyecto = ({route}) => {
                     variables: {
                          input: {
                               nombre,
-                              proyecto: route.params.id
+                              proyecto: id
                          }
                     }
                });
@@ -60,6 +85,9 @@ const Proyecto = ({route}) => {
                duration: 5000
           })
      }
+
+     // Si apollo esta consultando
+     if(loading) return <Text>Cargando...</Text>
 
      return ( 
           <Container style={[globalStyles.contenedor], { backgroundColor: '#e84347'}}>
