@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { Text, ListItem, Left, Right, Icon, Toast } from 'native-base';
 import { gql, useMutation } from '@apollo/client';
 
@@ -14,10 +14,17 @@ const ACTUALIZAR_TAREA = gql`
      }
 `;
 
+const ELIMINAR_TAREA = gql`
+     mutation eliminarTarea($id: ID!) {
+          eliminarTarea(id: $id)
+     }
+`;
+
 const Tarea = ({tarea}) => {
 
      // Apollo
      const [ actualizarTarea ] = useMutation(ACTUALIZAR_TAREA);
+     const [ eliminarTarea ] = useMutation(ELIMINAR_TAREA);
 
      // Cambia el estado de una tarea a completo o incompleto
      const cambiarEstado = async () => {
@@ -42,10 +49,41 @@ const Tarea = ({tarea}) => {
           }
      }
 
+     // Dialogo para eliminar o no una tarea 
+     const mostrarEliminar = () => {
+          Alert.alert('Eliminar Tarea', 'Deseas eliminar esta tarea?', [
+               {
+                    text: 'Cancelar',
+                    style: 'cancel'
+               },
+               {
+                    text: 'Confirmar',
+                    onPress: () => eliminarTareaDB()
+               }
+          ])
+     }
+
+     // Eliminar tarea de la base de datos
+     const eliminarTareaDB = async () => {
+          const { id } = tarea;
+
+          try {
+               const { data } = await eliminarTarea({
+                    variables: {
+                         id
+                    }
+               });
+               console.log(data);
+          } catch (error) {
+               console.log(error);
+          }
+     }
+
      return ( 
           <>
                <ListItem
                     onPress={ () => cambiarEstado() }
+                    onLongPress={ () => mostrarEliminar() }
                >
                     <Left>
                          <Text>{tarea.nombre}</Text>
