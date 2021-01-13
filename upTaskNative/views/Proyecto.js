@@ -49,7 +49,30 @@ const Proyecto = ({route}) => {
      console.log(data);
 
      // Apollo crear tareas
-     const [ nuevaTarea ] = useMutation(NUEVA_TAREA);
+     const [ nuevaTarea ] = useMutation(NUEVA_TAREA, {
+          update(cache, { data: { nuevaTarea }}) {
+               const { obtenerTareas } = cache.readQuery({
+                    query: OBTENER_TAREAS,
+                    variables: {
+                         input: {
+                              proyecto: id
+                         }
+                    }
+               });
+
+               cache.writeQuery({
+                    query: OBTENER_TAREAS,
+                    variables: {
+                         input: {
+                              proyecto: id
+                         }
+                    },
+                    data: {
+                         obtenerTareas: [...obtenerTareas, nuevaTarea]
+                    }
+               });
+          }
+     });
 
      // Validar y crear tareas
      const handleSubmit = async () => {
